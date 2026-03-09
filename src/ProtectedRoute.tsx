@@ -8,19 +8,18 @@ export default function ProtectedRoute({ children }: any) {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(BACKEND+"get-user/", {
-        withCredentials: true,
-      })
-      .then(() => {
-        setAuthenticated(true);
-      })
-      .catch(() => {
-        setAuthenticated(false);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    axios.get(
+        BACKEND+"get-user/",
+        { withCredentials: true}
+      ).then(() => {
+          setAuthenticated(true);
+        })
+        .catch(() => {
+          setAuthenticated(false);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
   }, []);
 
   if (loading) return <p>Loading...</p>;
