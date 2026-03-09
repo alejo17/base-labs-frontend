@@ -49,8 +49,10 @@ export default function Dashboard() {
   const [dataNegative, setDataNegative] = useState([]);
 
   useEffect( () => {
-    axios.get(BACKEND+"get-top-ten/")
-      .then(response => {
+    axios.get(
+      BACKEND+"get-top-ten/",
+      { withCredentials: true }
+    ).then(response => {
         setData(response.data)
       })
       .catch(error => {
@@ -59,8 +61,10 @@ export default function Dashboard() {
   }, []);
 
   useEffect( () => {
-    axios.get(BACKEND+"get-negative-margin/")
-      .then(response => {
+    axios.get(
+      BACKEND+"get-negative-margin/",
+      { withCredentials: true }
+    ).then(response => {
         setDataNegative(response.data)
       })
       .catch(error => {
