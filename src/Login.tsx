@@ -18,12 +18,16 @@ export default function Login() {
       await axios.post(
         BACKEND+"login/",
         { username, password },
-        { withCredentials: true }
-      );
-
-      navigate("/dashboard")
+      ).then(response => {
+          navigate("/dashboard")
+          localStorage.setItem("token", response.data.access);
+        })
+        .catch(error => {
+          alert("Invalid credentials")
+          console.error(error);
+        });
     } catch {
-      alert("Invalid credentials")
+      alert("There was an error")
     }
   };
 

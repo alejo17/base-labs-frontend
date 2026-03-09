@@ -10,7 +10,11 @@ export default function ProtectedRoute({ children }: any) {
   useEffect(() => {
     axios.get(
         BACKEND+"get-user/",
-        { withCredentials: true}
+        { 
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
       ).then(() => {
           setAuthenticated(true);
         })

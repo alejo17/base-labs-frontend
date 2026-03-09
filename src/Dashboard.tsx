@@ -51,7 +51,11 @@ export default function Dashboard() {
   useEffect( () => {
     axios.get(
       BACKEND+"get-top-ten/",
-      { withCredentials: true }
+      { 
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      }
     ).then(response => {
         setData(response.data)
       })
@@ -63,7 +67,11 @@ export default function Dashboard() {
   useEffect( () => {
     axios.get(
       BACKEND+"get-negative-margin/",
-      { withCredentials: true }
+      { 
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      }
     ).then(response => {
         setDataNegative(response.data)
       })
